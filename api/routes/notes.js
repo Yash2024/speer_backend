@@ -6,7 +6,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const checkAuth=require('../middleware/checkauth');
 
-router.get('/',(req,res,next) => {
+router.get('/',checkAuth,(req,res,next) => {
     const email= req.body.email
 
     Note.find({
@@ -26,10 +26,10 @@ router.get('/',(req,res,next) => {
     })
 })
 
-router.get('/:id',(req,res,next) => {
+router.get('/:id',checkAuth,(req,res,next) => {
     const id= req.params.id
 
-    Note.find({noteid: id})
+    Note.find({'sharedWith.useremail': req.body.email,noteid: id})
     .then(doc =>{
         const t= {
             _id: doc[0]._id,
@@ -50,7 +50,7 @@ router.get('/:id',(req,res,next) => {
     })
 })
 
-router.post('/', (req,res,next)=>{
+router.post('/',checkAuth, (req,res,next)=>{
     // console.log('post');
     // console.log(req.body.noteid);
     Note.find({noteid:req.body.noteid})
@@ -77,7 +77,7 @@ router.post('/', (req,res,next)=>{
             .then(result => {
                 console.log(result)
                 res.status(200).json({
-                    message: "Note added successfully"
+                    message: "Note created successfully"
                 })
             })
             .catch(err => {
@@ -90,7 +90,7 @@ router.post('/', (req,res,next)=>{
     })
 })
 
-router.put('/:id', (req,res,next)=>{
+router.put('/:id',checkAuth, (req,res,next)=>{
     const noteid = req.params.id;
     console.log(noteid);
     Note.find({noteid: noteid})
@@ -110,7 +110,10 @@ router.put('/:id', (req,res,next)=>{
                     })
                     .then(result => {
                         console.log(result);
-                        res.status(200).json(result);
+                        res.status(200).json({
+                            message: "Note updated successfully",    
+                            data: result 
+                        });
                     })
                     .catch(err => {
                         console.log(err);
@@ -137,7 +140,7 @@ router.put('/:id', (req,res,next)=>{
     
 })
 
-router.delete('/:id', (req,res,next)=>{
+router.delete('/:id',checkAuth, (req,res,next)=>{
     const noteid = req.params.id;
     // console.log(id);
     Note.find({noteid: noteid})
@@ -165,7 +168,7 @@ router.delete('/:id', (req,res,next)=>{
     })
 })
 
-router.post('/:id/share', (req,res,next)=>{
+router.post('/:id/share',checkAuth, (req,res,next)=>{
 
     const noteid = req.params.id;
 
@@ -186,7 +189,9 @@ router.post('/:id/share', (req,res,next)=>{
                 })
                 .then(result => {
                     console.log(result);
-                    res.status(200).json(result);
+                    res.status(200).json({
+                        message:"Note shared successfully"
+                    });
                 })
                 .catch(err => {
                     console.log(err);

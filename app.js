@@ -5,7 +5,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const Note = require('./api/models/note');
-
+const checkAuth=require('./api/middleware/checkauth');
 
 userRoutes = require('./api/routes/users');
 noteRoutes = require('./api/routes/notes');
@@ -24,9 +24,7 @@ app.use(cors());
 app.use('/api/auth', userRoutes);
 app.use('/api/notes', noteRoutes);
 
-app.get('/api/search', (req, res, next) => {
-    // const { q: query } = req.query;
-    // console.log(query);
+app.get('/api/search',checkAuth, (req, res, next) => {
     
     const email = req.body.email;  
 
