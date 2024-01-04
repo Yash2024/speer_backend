@@ -1,5 +1,3 @@
-
-
 # Note Management RESTful API
 
 ## Project Overview
@@ -23,6 +21,7 @@ This project is a secure and scalable RESTful API that allows users to perform C
 - **mongoose**: MongoDB object modeling tool for Node.js.
 - **morgan**: HTTP request logger middleware.
 - **nodemon**: Development utility for automatically restarting the server.
+- **express-rate-limit**: A middleware for Express.js that helps prevent abuse by limiting the rate of incoming requests to an application, protecting against various types of attacks such as brute-force login attempts or other forms of abuse.
 
 ## Setup Instructions
 
@@ -31,20 +30,28 @@ This project is a secure and scalable RESTful API that allows users to perform C
    ```bash
    git clone https://github.com/Yash2024/speer_backend.git
    cd speer_backend-main
-   
+
+   ```
+
 2. Install dependencies:
 
    ```bash
    npm install
+   ```
+
 3. Run the application:
 
    ```bash
    npm start
+   ```
 
-  The API will be accessible at http://localhost:3000.
+The API will be accessible at http://localhost:3000.
 
 ## Testing
+
 - **Postman**: A popular API testing tool.
+- **Tests Folder**: There is a test folder in the code containing tests
 
 ## Contact Information
+
 - **Email**: agrawal2002yash@gmail.com
