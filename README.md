@@ -39,7 +39,7 @@ This project is a secure and scalable RESTful API that allows users to perform C
 3. Run the application:
 
    ```bash
-  npm start
+   npm start
 
   The API will be accessible at http://localhost:3000.
 
