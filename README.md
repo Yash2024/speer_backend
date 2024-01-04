@@ -43,8 +43,8 @@ This project is a secure and scalable RESTful API that allows users to perform C
 
   The API will be accessible at http://localhost:3000.
 
-- **Testing:**
+## Testing
 - **Postman**: A popular API testing tool.
 
-- **Contact Information**
+## Contact Information
 - **Email**: agrawal2002yash@gmail.com
