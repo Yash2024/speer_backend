@@ -173,32 +173,48 @@ router.post('/:id/share',checkAuth, (req,res,next)=>{
     const noteid = req.params.id;
 
     const email = req.body.email;
+    
     Note.find({noteid: noteid})
     .then(doc=>{
+
         if(doc.length>=1)
         {
-            const array=doc[0].sharedWith;
-            array.push({useremail: email});
-            Note.updateOne(
-                {noteid: noteid},
+            let array=doc[0].sharedWith;
+            console.log(array);
+            const result=array.find(item => item.useremail === email);
+
+                console.log(result);
+                if(result)
                 {
-                    
-                    $set:{
-                        sharedWith: array
-                    }
-                })
-                .then(result => {
-                    console.log(result);
-                    res.status(200).json({
-                        message:"Note shared successfully"
-                    });
-                })
-                .catch(err => {
-                    console.log(err);
                     res.status(500).json({
-                        error: err
+                        message: 'Note already shared'
                     })
-                })
+                }
+                else
+                {
+                    array.push({useremail: email});
+                    Note.updateOne(
+                        {noteid: noteid},
+                        {
+                            
+                            $set:{
+                                sharedWith: array
+                            }
+                        })
+                        .then(result => {
+                            console.log(result);
+                            res.status(200).json({
+                                message:"Note shared successfully"
+                            });
+                        })
+                        .catch(err => {
+                            console.log(err);
+                            res.status(500).json({
+                                error: err
+                            })
+                        })
+                }
+            
         }
         else
         {
