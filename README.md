@@ -1,4 +1,4 @@
-# Note Management RESTful API
+# GuardianNoteAPI
 
 ## Project Overview
 
