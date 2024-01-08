@@ -3,6 +3,10 @@
 ## Project Overview
 
 This project is a secure and scalable RESTful API that allows users to perform CRUD operations on notes. Users can create, read, update, and delete notes. Additionally, the application supports features like sharing notes with other users and searching for notes based on keywords.
+- **Designed and Implemented Secure RESTful API:** Developed a robust and secure RESTful API for note management, ensuring data integrity and user authentication through JSON Web Tokens (JWT).
+- **Collaborated on Scalable Architecture:** Contributed to the design of a scalable architecture, optimizing performance and responsiveness to handle potential high traffic while maintaining a seamless user experience.
+- **Implemented Advanced Note Sharing Features:** Enabled users to securely share notes with others, incorporating advanced access control mechanisms to ensure privacy and collaboration.
+- **Integrated Keyword-Based Search Functionality:** Implemented a powerful search functionality allowing users to efficiently retrieve notes based on keywords, enhancing user experience and information retrieval.
 
 ## Technologies Used
 
